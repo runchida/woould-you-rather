@@ -1,11 +1,15 @@
-import { SET_AUTH } from "../actions/authedUser";
+import { GET_AUTH, SET_AUTH } from "../actions/authedUser";
 
-export default function questions(state = {}, action) {
+export default function authedUser(state = {user: ""}, action) {
     switch (action.type) {
+        case GET_AUTH:
+            return {
+                ...state,
+            }
         case SET_AUTH:
             return {
                 ...state,
-                user: action.user,
+                user: action.user
             }
         default:
             return state
