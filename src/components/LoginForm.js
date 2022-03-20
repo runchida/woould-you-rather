@@ -1,24 +1,40 @@
 import { connect } from 'react-redux'
-import UserCard from './userCard';
+import React, { Component } from 'react';
+import UserCard from './UserCard';
+import { setAuthedUser } from '../actions/authedUser';
 
-const LoginForm = (props) => {
-    console.log(props.users)
-    return (
-        <form>
-            {
-                Object.entries(props.users).map((user) => {
-                    console.log("user", user)
-                    return (<UserCard user={user[1]} ></UserCard>)
-                })
-            }
-            <button>Login</button>
-        </form>
+class LoginForm extends React.Component {
+    
+    login = (event) => {
+        event.preventDefault()
+        console.log(event)
+        const authedUserID = Object.entries(event.target).map((input) => {
+            console.log(input[1].checked)
+            if (input[1].checked === true) return input[1].value
+        }).filter((input) => input)[0]
+        this.props.dispatch(setAuthedUser(this.props.users[authedUserID]))
+        return authedUserID
+    }
 
-    );
+    render() {
+        return (
+            <form onSubmit={this.login} onChange={this.onSelect}>
+                {
+                    Object.entries(this.props.users).map((user) => {
+                        return (<UserCard key={user[1].id} user={user[1]}></UserCard>)
+                    })
+                }
+                <button>Login</button>
+            </form>
+
+        );
+    }
+
 }
 
 
-function mapStateToProps({ authedUser, users }) {
+
+function mapStateToProps({ authedUser, users },) {
     return { authedUser, users }
 }
 
