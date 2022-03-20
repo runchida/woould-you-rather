@@ -21,6 +21,9 @@ class App extends Component {
           Would you rather
         </header>
         {<LoginForm></LoginForm>}
+        <footer>
+          <a href="https://www.freepik.com/vectors/dog">Dog vector created by freepik - www.freepik.com</a>
+        </footer>
       </div>
     );
   }
