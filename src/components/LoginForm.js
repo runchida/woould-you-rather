@@ -7,9 +7,7 @@ class LoginForm extends React.Component {
     
     login = (event) => {
         event.preventDefault()
-        console.log(event)
         const authedUserID = Object.entries(event.target).map((input) => {
-            console.log(input[1].checked)
             if (input[1].checked === true) return input[1].value
         }).filter((input) => input)[0]
         this.props.dispatch(setAuthedUser(this.props.users[authedUserID]))

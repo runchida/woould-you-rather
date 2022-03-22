@@ -9,7 +9,7 @@ export default function authedUser(state = {user: ""}, action) {
         case SET_AUTH:
             return {
                 ...state,
-                user: action.user
+                ...(action.user)
             }
         default:
             return state
