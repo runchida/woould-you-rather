@@ -4,9 +4,9 @@ import QuestionCard from './QuestionCard';
 const Questions = (props) => {
     console.log(props)
     return (
-        <div>
+        <div className='questions'>
             <p>{`${props.status} Questions`}</p>
-            { props.status==="Unanswered" && 
+            {
                 props.questions.map((question) => {
                     return <QuestionCard question={question}></QuestionCard>
                 }) 

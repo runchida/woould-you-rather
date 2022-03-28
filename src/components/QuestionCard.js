@@ -1,13 +1,12 @@
-import { connect } from 'react-redux'
-
 const QuestionCard = (props) => {
-    console.log(props)
     return (
-        <div>
+        <div className='q-overview'>
             <p>{`${props.question.optionOne.text}`}</p>
+            <p>OR</p>
+            <p>{`${props.question.optionTwo.text}`}</p>
         </div>
 
     );
 }
 
-export default connect()(QuestionCard);
+export default QuestionCard;

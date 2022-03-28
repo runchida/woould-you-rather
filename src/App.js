@@ -6,6 +6,7 @@ import { setAuthedUser, getAuthedUser } from './actions/authedUser'
 import './App.css';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
+import QuestionView from './components/QuestionView';
 
 class App extends Component {
   sarah = {
@@ -36,8 +37,9 @@ class App extends Component {
         </header>
         {<LoginForm ></LoginForm>}
         {<Home></Home>}
+        <QuestionView questionID={"8xf0y6ziyjabvozdd253nd"}></QuestionView>
         <footer>
-          <a href="https://www.freepik.com/vectors/dog">Dog vector created by freepik - www.freepik.com</a>
+          <a href="https://www.freepik.com/vectors/dog">User avatars created by freepik - www.freepik.com</a>
         </footer>
       </div>
     );

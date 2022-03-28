@@ -5,27 +5,19 @@ const Home = (props) => {
     console.log(props)
     return (
         <div>
-            <p>{`Hello, ${props.authedUser.user.name}`}</p>
+            <p>{`Hello, ${props.authedUser.name}`}</p>
             <Questions status='Unanswered' questions={props.unansweredQ}></Questions>
+            <Questions status='Answered' questions={props.answeredQ}></Questions>
         </div>
     );
 }
 
-function getUnansweredQustions(questions, user) {
+function categorizeQuestions(questions, user) {
     let unansweredQ = []
     let answeredQ = []
-    console.log(user.id)
     questions.map((question) => {
-        // if(question[1].optionOne.votes.includes(user)) {
-        //     answeredQ.push({...question[1], answer: question[1].optionOne.text})
-        // } else if(question[1].optionTwo.votes.includes(user)) {
-        //     answeredQ.push({...question[1], answer: question[1].optionOne.text})
-        // } else {
-        //     unansweredQ.push(question[1])
-        // }
-
         if (user.answers.hasOwnProperty(question[0])) {
-            answeredQ.push(question[1])
+            answeredQ.push({...question[1]})
         } else {
             unansweredQ.push({ ...question[1], answer: user.answers[question[0]] })
         }
@@ -44,7 +36,7 @@ function mapStateToProps({ authedUser, questions }) {
     let answeredQ, unansweredQ
     console.log(authedUser)
     if (authedUser) {
-        [answeredQ, unansweredQ] = getUnansweredQustions(sortedQuestions, authedUser)
+        [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
     }
     
     return { authedUser, answeredQ, unansweredQ }
