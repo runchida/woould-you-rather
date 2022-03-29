@@ -9,15 +9,15 @@ const Questions = (props) => {
             {
                 props.questions.map((question) => {
                     return <QuestionCard question={question}></QuestionCard>
-                }) 
+                })
             }
         </div>
 
     );
 }
 
-function mapStateToProps({ authedUser}, { status, questions }) {
-    
+function mapStateToProps({ authedUser }, { status, questions }) {
+
     return { authedUser, questions, status }
 }
 

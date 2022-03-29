@@ -1,6 +1,6 @@
 import { GET_AUTH, SET_AUTH } from "../actions/authedUser";
 
-export default function authedUser(state = {user: ""}, action) {
+export default function authedUser(state = {}, action) {
     switch (action.type) {
         case GET_AUTH:
             return {
