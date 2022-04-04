@@ -9,6 +9,7 @@ import LoginForm from './components/LoginForm';
 import QuestionView from './components/QuestionView';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Questions from './components/Questions';
+import NavBar from './components/navBar';
 
 class App extends Component {
   sarah = {
@@ -38,9 +39,10 @@ class App extends Component {
           <header className="App-header">
             Would you rather
           </header>
+          <NavBar></NavBar>
           <Routes>
-            <Route path='/' exact element={<Home />} />
-            <Route path='/login' element={<LoginForm />} />
+            <Route path='/' exact element={<LoginForm />} />
+            <Route path='/home' element={<Home />} />
             <Route path='/answered' element={<Questions status='answered' />} />
             <Route path='/unanswered' element={<Questions status='unanswered'/>} />
             {/* Route with question ID for question view*/}

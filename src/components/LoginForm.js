@@ -12,7 +12,7 @@ class LoginForm extends React.Component {
             if (input[1].checked === true) return input[1].value
         }).filter((input) => input)[0]
         this.props.dispatch(setAuthedUser(this.props.users[authedUserID]))
-        navigate("/")
+        navigate("/home")
     }
 
     render() {

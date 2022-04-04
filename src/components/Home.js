@@ -1,15 +1,25 @@
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Questions from './Questions';
 
-const Home = (props) => {
-    console.log(props)
-    return (
-        <div>
-            <p>{`Hello, ${props.authedUser.name}`}</p>
-            <Questions status='Unanswered' questions={props.unansweredQ}></Questions>
-            <Questions status='Answered' questions={props.answeredQ}></Questions>
-        </div>
-    );
+class Home extends Component {
+    state = { showUnanswered: true }
+
+    render() {
+        return (
+            <div>
+                <p>{`Hello, ${this.props.authedUser.name}`}</p>
+                <div className="questionTypeSelect">
+                    <button onClick={() => this.setState({showUnanswered: true})}>Unanswered</button>
+                    <button onClick={() => this.setState({showUnanswered: false})}>Answered</button>
+                </div>
+                {this.state.showUnanswered ?
+                    <Questions status='Unanswered' questions={this.props.unansweredQ}></Questions> :
+                    <Questions status='Answered' questions={this.props.answeredQ}></Questions>
+                }
+            </div>
+        );
+    }
 }
 
 function categorizeQuestions(questions, user) {
@@ -17,7 +27,7 @@ function categorizeQuestions(questions, user) {
     let answeredQ = []
     questions.map((question) => {
         if (user.answers.hasOwnProperty(question[0])) {
-            answeredQ.push({...question[1]})
+            answeredQ.push({ ...question[1] })
         } else {
             unansweredQ.push({ ...question[1], answer: user.answers[question[0]] })
         }
@@ -37,8 +47,9 @@ function mapStateToProps({ authedUser, questions }) {
     console.log(authedUser)
     if (authedUser) {
         [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
+        console.log(answeredQ)
     }
-    
+
     return { authedUser, answeredQ, unansweredQ }
 }
 
