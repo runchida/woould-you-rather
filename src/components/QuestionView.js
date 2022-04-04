@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { connect } from 'react-redux'
 const avatarPath = window.location.origin + '/avatars/'
 
@@ -45,7 +44,7 @@ function mapStateToProps({ authedUser, questions, users }, { questionID }) {
     let percentOne = 0;
     let optionOneSelected
 
-    if (authedUser.answers) {
+    if (authedUser.answers && users[question.author]) {
         answered = authedUser.answers.hasOwnProperty(questionID)
         author = { name: users[question.author].name, avatarURL: users[question.author].avatarURL }
         if(answered) {

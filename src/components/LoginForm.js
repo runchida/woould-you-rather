@@ -2,16 +2,17 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react';
 import UserCard from './UserCard';
 import { setAuthedUser } from '../actions/authedUser';
+import { useNavigate } from 'react-router-dom'
 
 class LoginForm extends React.Component {
-    
     login = (event) => {
         event.preventDefault()
+        let navigate = useNavigate()
         const authedUserID = Object.entries(event.target).map((input) => {
             if (input[1].checked === true) return input[1].value
         }).filter((input) => input)[0]
         this.props.dispatch(setAuthedUser(this.props.users[authedUserID]))
-        return authedUserID
+        navigate("/")
     }
 
     render() {
