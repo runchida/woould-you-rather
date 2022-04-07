@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Questions from './components/Questions';
 import NavBar from './components/navBar';
 import Leaderboard from './components/Leaderboard';
+import NewQuestion from './components/NewQuestion';
 
 class App extends Component {
   sarah = {
@@ -47,9 +48,9 @@ class App extends Component {
             <Route path='/' exact element={<Home />} />
             <Route path='/answered' element={<Questions status='answered' />} />
             <Route path='/unanswered' element={<Questions status='unanswered'/>} />
-            {/* Route with question ID for question view*/}
             <Route path='/questions/:questionID' element={<QuestionView />} />
             <Route path='/leaderboard' element={<Leaderboard />} />
+            <Route path='/add' element={<NewQuestion />} />
 
             {/* {<LoginForm ></LoginForm>}
             {<Home></Home>} */}
