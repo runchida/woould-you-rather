@@ -12,7 +12,7 @@ const LoginForm = (props) => {
             if (input[1].checked === true) return input[1].value
         }).filter((input) => input)[0]
         props.dispatch(setAuthedUser(props.users[authedUserID]))
-        navigate("/")
+        navigate(props.path)
     }
     
         return (
@@ -27,8 +27,10 @@ const LoginForm = (props) => {
         );
 }
 
-function mapStateToProps({ authedUser, users },) {
-    return { authedUser, users }
+function mapStateToProps({ authedUser, users }, {toRedirect}) {
+    const path = toRedirect ? toRedirect : "/" 
+    console.log(path)
+    return { authedUser, users, path }
 }
 
 export default connect(mapStateToProps)(LoginForm);

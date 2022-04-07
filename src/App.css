@@ -77,3 +77,9 @@
   margin: auto;
   text-decoration: none;
 }
+
+.current-user {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

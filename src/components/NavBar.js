@@ -17,9 +17,16 @@ const NavBar = (props) => {
             <Link to="/">Home</Link>
             <Link to="/add">New Question</Link>
             <Link to="/leaderboard">Leaderboard</Link>
-            <button onClick={logout}>Logout</button>
+            <div className="current-user">
+                <p>{props.authedUser.name}</p>
+                <button onClick={logout}> Logout</button>
+            </div>
         </div>
     );
 }
 
-export default connect(null)(NavBar);
+function mapStateToProps({ authedUser }) {
+    return { authedUser }
+}
+
+export default connect(mapStateToProps)(NavBar);

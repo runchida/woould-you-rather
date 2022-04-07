@@ -22,8 +22,12 @@ const Home = (props) => {
         );
     }
     else {
-        alert('Please login first')
-        return (<LoginForm></LoginForm>)
+        return (
+            <div>
+                <p>Please log in first</p>
+                <LoginForm toRedirect="/"></LoginForm>
+            </div>
+        )
     }
 }
 

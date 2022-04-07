@@ -30,7 +30,6 @@ class App extends Component {
             Would you rather
           </header>
           <NavBar></NavBar>
-            {/* <QuestionView questionID={"8xf0y6ziyjabvozdd253nd"}></QuestionView> */}
           <Routes>
             <Route path='/login' element={<LoginForm />} />
             <Route path='/' exact element={<Home />} />

@@ -19,9 +19,9 @@ const NewQuestion = (props) => {
             <div>
                 <p>Would you rather...</p>
                 <form onSubmit={(e) => onSubmit(e)}>
-                    <label for="optionOne">This:</label>
+                    <label htmlFor="optionOne">This:</label>
                     <input type="text" id="one" name="optionOne"></input>
-                    <label for="optionTwo">Or That:</label>
+                    <label htmlFor="optionTwo">Or That:</label>
                     <input type="text" id="two" name="optionTwo"></input>
                     <button type="submit">Ask away</button>
                 </form>
@@ -29,8 +29,12 @@ const NewQuestion = (props) => {
         )
     }
     else {
-        alert('Please login first')
-        return (<LoginForm></LoginForm>)
+        return (
+            <div>
+                <p>Please log in first</p>
+                <LoginForm toRedirect="/add"></LoginForm>
+            </div>
+        )
     }
 }
 

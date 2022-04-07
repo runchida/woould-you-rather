@@ -35,8 +35,11 @@ const Leaderboard = (props) => {
         )
     }
     else {
-        alert('Please login first')
-        return (<LoginForm></LoginForm>)
+        return (
+            <div>
+                <p>Please log in first</p>
+                <LoginForm toRedirect="/leaderboard"></LoginForm>
+            </div>)
     }
 }
 
