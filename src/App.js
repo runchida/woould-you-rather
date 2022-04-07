@@ -25,7 +25,7 @@ class App extends Component {
     questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
   }
   componentDidMount() {
-    console.log('mounted')
+    console.log('mounted') 
     this.props.dispatch(getQuestionsFromDB())
     this.props.dispatch(getUsersFromDB())
     this.props.dispatch(setAuthedUser(this.sarah))
@@ -40,18 +40,18 @@ class App extends Component {
             Would you rather
           </header>
           <NavBar></NavBar>
+            {/* <QuestionView questionID={"8xf0y6ziyjabvozdd253nd"}></QuestionView> */}
           <Routes>
-            <Route path='/' exact element={<LoginForm />} />
-            <Route path='/home' element={<Home />} />
+            <Route path='/login' element={<LoginForm />} />
+            <Route path='/' exact element={<Home />} />
             <Route path='/answered' element={<Questions status='answered' />} />
             <Route path='/unanswered' element={<Questions status='unanswered'/>} />
             {/* Route with question ID for question view*/}
-            {/* <Route path={'/'} exact component={Home} /> */}
+            <Route path='/questions/:questionID' element={<QuestionView />} />
 
 
             {/* {<LoginForm ></LoginForm>}
-            {<Home></Home>}
-            <QuestionView questionID={"8xf0y6ziyjabvozdd253nd"}></QuestionView> */}
+            {<Home></Home>} */}
           </Routes>
           <footer>
             <a href="https://www.freepik.com/vectors/dog">User avatars created by freepik - www.freepik.com</a>

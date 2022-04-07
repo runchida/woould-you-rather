@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 const QuestionCard = (props) => {
     return (
         <div className='q-overview'>
-            <p>{`${props.question.optionOne.text}`}</p>
-            <p>OR</p>
-            <p>{`${props.question.optionTwo.text}`}</p>
+            <Link to={`questions/${props.question.id}`}>
+                <p>{`${props.question.optionOne.text}`}</p>
+                <p>OR</p>
+                <p>{`${props.question.optionTwo.text}`}</p>
+            </Link>
         </div>
 
     );

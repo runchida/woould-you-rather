@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
+
+
 const avatarPath = window.location.origin + '/avatars/'
 
 const QuestionView = (props) => {
-    console.log('Question overview', props)
-    if (props.question) {
+    console.log(props)
+        if (props.question) {
             return (
                 <div>
                     <p>Would you rather?</p>
@@ -12,7 +14,7 @@ const QuestionView = (props) => {
                     {props.answered ?
                         <div className='horizontal-options'>
                             <p className={props.optionOneSelected ? "answeredFromUser" : ""}>{`${props.percentOne}% ${props.question.optionOne.text}`}</p>
-                            <p> OR </p>
+                            <p> OR </p> 
                             <p className={!props.optionOneSelected ? "answeredFromUser" : ""}>{`${100 - props.percentOne}% ${props.question.optionTwo.text}`}</p>
                         </div>
                         :
@@ -24,9 +26,9 @@ const QuestionView = (props) => {
                     }
                 </div>
             );
-    } else {
-        return <p>404! No question found!</p>
-    }
+        } else {
+            return <p>404! No question found!</p>
+        }
 }
 
 // calculate percentage of answers
@@ -37,17 +39,20 @@ function calculatePercentage(question) {
     return percentOne
 }
 
-function mapStateToProps({ authedUser, questions, users }, { questionID }) {
+function mapStateToProps({ authedUser, questions, users }) {
+
+    const questionID  = window.location.pathname.split('/questions/')[1]
+    console.log(questionID)
     const question = questions[questionID];
     let answered
     let author = {}
     let percentOne = 0;
-    let optionOneSelected
+    let optionOneSelected = false
 
     if (authedUser.answers && users[question.author]) {
         answered = authedUser.answers.hasOwnProperty(questionID)
         author = { name: users[question.author].name, avatarURL: users[question.author].avatarURL }
-        if(answered) {
+        if (answered) {
             percentOne = calculatePercentage(question)
             optionOneSelected = authedUser.answers[questionID] === "optionOne"
         }

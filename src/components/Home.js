@@ -27,9 +27,9 @@ function categorizeQuestions(questions, user) {
     let answeredQ = []
     questions.map((question) => {
         if (user.answers.hasOwnProperty(question[0])) {
-            answeredQ.push({ ...question[1] })
+            answeredQ.push({ ...question[1], answer: user.answers[question[0]] })
         } else {
-            unansweredQ.push({ ...question[1], answer: user.answers[question[0]] })
+            unansweredQ.push({ ...question[1] })
         }
     })
     return [answeredQ, unansweredQ]

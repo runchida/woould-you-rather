@@ -7,7 +7,7 @@ const Questions = (props) => {
         <div className='questions'>
             <p>{`${props.status} Questions`}</p>
             {
-                props.processedQ.map((question) => {
+                props.questions.map((question) => {
                     return <QuestionCard question={question}></QuestionCard>
                 })
             }
@@ -34,20 +34,20 @@ function sortRecentQFirst(questions) {
     return sortedQuestions
 }
 
-function mapStateToProps({ authedUser, questions }, { status }) {
-    const sortedQuestions = sortRecentQFirst(questions)
-    let answeredQ, unansweredQ, processedQ
-    console.log(authedUser)
-    if (authedUser) {
-        [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
-        if (status === 'answered')
-            processedQ = [...answeredQ]
-        else {
-            processedQ = [...unansweredQ]
-        }
-    }
+function mapStateToProps({ authedUser }, { questions, status }) {
+    // const sortedQuestions = sortRecentQFirst(questions)
+    // let answeredQ, unansweredQ, processedQ
+    // console.log(authedUser)
+    // if (authedUser) {
+    //     [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
+    //     if (status === 'answered')
+    //         processedQ = [...answeredQ]
+    //     else {
+    //         processedQ = [...unansweredQ]
+    //     }
+    // }
 
-    return { authedUser, processedQ, status }
+    return { authedUser, questions, status }
 }
 
 export default connect(mapStateToProps)(Questions);
