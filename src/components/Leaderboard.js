@@ -5,14 +5,24 @@ const Leaderboard = (props) => {
     console.log(props)
     return (
         <div>
+            <div className='horizontal-options'>
+                <p>User</p>
+                <p>Questions answered</p>
+                <p>Answers given</p>
+                <p>Score</p>
+            </div>
             {
                 props.sortedScore.map((entry) => {
                     const user = entry.user
                     const score = entry.score
                     return (
-                        <div className='leaderEntry' >
-                            <img className="user-avatar" src={avatarPath + user.avatarURL} alt={`${user.name}'s avatar`}></img>
-                            <p>{user.name}</p>
+                        <div className='horizontal-options' >
+                            <div>
+                                <img className="user-avatar" src={avatarPath + user.avatarURL} alt={`${user.name}'s avatar`}></img>
+                                <p>{user.name}</p>
+                            </div>
+                            <p>{entry.question}</p>
+                            <p>{entry.answers}</p>
                             <p>{score}</p>
                         </div>
                     )
@@ -26,13 +36,14 @@ const Leaderboard = (props) => {
 function getScore(user) {
     const numAns = (Object.keys(user.answers)).length
     const numQuestion = (Object.keys(user.questions)).length
-    return numAns + numQuestion
+    return [numQuestion, numAns, numAns + numQuestion]
 }
 
 function mapStateToProps({ users }) {
     const scoreArray = Object.entries(users).map((entry) => {
         const user = entry[1]
-        return { user, score: getScore(user) }
+        const scoreInfo = getScore(user)
+        return { user, question: scoreInfo[0], answers: scoreInfo[1], score: scoreInfo[2] }
     })
 
     console.log(scoreArray)
