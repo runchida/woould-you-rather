@@ -51,9 +51,6 @@ class App extends Component {
             <Route path='/questions/:questionID' element={<QuestionView />} />
             <Route path='/leaderboard' element={<Leaderboard />} />
             <Route path='/add' element={<NewQuestion />} />
-
-            {/* {<LoginForm ></LoginForm>}
-            {<Home></Home>} */}
           </Routes>
           <footer>
             <a href="https://www.freepik.com/vectors/dog">User avatars created by freepik - www.freepik.com</a>
