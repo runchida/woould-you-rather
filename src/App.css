@@ -68,3 +68,12 @@
 .answeredFromUser {
   background-color: rgb(192, 253, 192);
 }
+
+.leaderEntry {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto
+
+}

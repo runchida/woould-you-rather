@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 
-
 const avatarPath = window.location.origin + '/avatars/'
 
 const QuestionView = (props) => {
