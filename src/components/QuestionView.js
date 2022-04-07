@@ -1,8 +1,19 @@
 import { connect } from 'react-redux'
+import {handleNewAnswer} from '../actions/questions'
+import { updateUserAnswer } from '../actions/users'
 
 const avatarPath = window.location.origin + '/avatars/'
 
 const QuestionView = (props) => {
+
+    const onSubmit = (event) => {
+        console.log(event.target.value)
+        const answer = event.target.value
+        props.dispatch(handleNewAnswer(props.user, props.question.id, answer))
+        props.dispatch(updateUserAnswer(props.user, props.question.id, answer))
+
+    }
+
     console.log(props)
         if (props.question) {
             return (
@@ -18,9 +29,9 @@ const QuestionView = (props) => {
                         </div>
                         :
                         <div className='horizontal-options'>
-                            <button>{props.question.optionOne.text}</button>
+                            <button onClick={(e) => onSubmit(e)} value="optionOne">{props.question.optionOne.text}</button>
                             <p> OR </p>
-                            <button>{props.question.optionTwo.text}</button>
+                            <button onClick={(e) => onSubmit(e)} value="optionTwo">{props.question.optionTwo.text}</button>
                         </div>
                     }
                 </div>
@@ -57,7 +68,7 @@ function mapStateToProps({ authedUser, questions, users }) {
         }
     }
 
-    return { question, answered, author, percentOne, optionOneSelected }
+    return { question, answered, author, percentOne, optionOneSelected, user:authedUser.id}
 }
 
 export default connect(mapStateToProps)(QuestionView);

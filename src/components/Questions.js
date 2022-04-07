@@ -8,7 +8,7 @@ const Questions = (props) => {
             <p>{`${props.status} Questions`}</p>
             {
                 props.questions.map((question) => {
-                    return <QuestionCard question={question}></QuestionCard>
+                    return <QuestionCard key={question.id} question={question}></QuestionCard>
                 })
             }
         </div>

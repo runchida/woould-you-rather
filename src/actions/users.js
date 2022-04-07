@@ -9,11 +9,26 @@ export function getUsersFromDB() {
     }
 }
 
+export function updateUserAnswer(authedUser, qid, answer) {
+    const answerObj = { authedUser, qid, answer }
+    return (dispatch) => {
+        return dispatch(updateAnswer(answerObj))
+    }
+}
+
 export const RECEIVE_USERS = 'RECEIVE_USERS'
+export const UPDATE_ANSWER = 'UPDATE_ANSWER'
 
 function receiveUsers(users) {
     return {
         type: RECEIVE_USERS,
         users
+    }
+}
+
+function updateAnswer(answer) {
+    return {
+        type: UPDATE_ANSWER,
+        answer
     }
 }

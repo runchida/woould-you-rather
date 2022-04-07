@@ -16,7 +16,7 @@ const Leaderboard = (props) => {
                     const user = entry.user
                     const score = entry.score
                     return (
-                        <div className='horizontal-options' >
+                        <div key={`${user.name}`} className='horizontal-options' >
                             <div>
                                 <img className="user-avatar" src={avatarPath + user.avatarURL} alt={`${user.name}'s avatar`}></img>
                                 <p>{user.name}</p>
