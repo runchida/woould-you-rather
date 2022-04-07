@@ -1,4 +1,4 @@
-import { GET_AUTH, SET_AUTH } from "../actions/authedUser";
+import { GET_AUTH, SET_AUTH, UPDATE_AUTH } from "../actions/authedUser";
 
 export default function authedUser(state = {}, action) {
     switch (action.type) {
@@ -10,6 +10,14 @@ export default function authedUser(state = {}, action) {
             return {
                 ...state,
                 ...(action.user)
+            }
+        case UPDATE_AUTH:
+            return {
+                ...state,
+                answers: {
+                    ...state.answers,
+                    [action.qid]: action.answer
+                }
             }
         default:
             return state

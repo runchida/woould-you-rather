@@ -28,24 +28,7 @@ function categorizeQuestions(questions, user) {
     return [answeredQ, unansweredQ]
 }
 
-function sortRecentQFirst(questions) {
-    const questionArray = Object.entries(questions)
-    const sortedQuestions = questionArray.sort((a, b) => b[1].timestamp - a[1].timestamp)
-    return sortedQuestions
-}
-
 function mapStateToProps({ authedUser }, { questions, status }) {
-    // const sortedQuestions = sortRecentQFirst(questions)
-    // let answeredQ, unansweredQ, processedQ
-    // console.log(authedUser)
-    // if (authedUser) {
-    //     [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
-    //     if (status === 'answered')
-    //         processedQ = [...answeredQ]
-    //     else {
-    //         processedQ = [...unansweredQ]
-    //     }
-    // }
 
     return { authedUser, questions, status }
 }

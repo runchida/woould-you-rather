@@ -23,6 +23,7 @@ class Home extends Component {
 }
 
 function categorizeQuestions(questions, user) {
+    console.log("categorizing")
     let unansweredQ = []
     let answeredQ = []
     questions.map((question) => {
@@ -42,12 +43,12 @@ function sortRecentQFirst(questions) {
 }
 
 function mapStateToProps({ authedUser, questions }) {
+    console.log(authedUser)
     const sortedQuestions = sortRecentQFirst(questions)
     let answeredQ, unansweredQ
     console.log(authedUser)
     if (authedUser) {
         [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
-        console.log(answeredQ)
     }
 
     return { authedUser, answeredQ, unansweredQ }
