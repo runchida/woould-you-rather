@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { handleNewQuestion } from '../actions/questions'
 import { useNavigate } from 'react-router-dom'
+import LoginForm from './LoginForm';
 
 const NewQuestion = (props) => {
     console.log(props)
@@ -13,18 +14,24 @@ const NewQuestion = (props) => {
         navigate("/")
     }
 
-    return (
-        <div>
-            <p>Would you rather...</p>
-            <form onSubmit={(e) => onSubmit(e)}>
-                <label for="optionOne">This:</label>
-                <input type="text" id="one" name="optionOne"></input>
-                <label for="optionTwo">Or That:</label>
-                <input type="text" id="two" name="optionTwo"></input>
-                <button type="submit">Ask away</button>
-            </form>
-        </div>
-    )
+    if (props.id) {
+        return (
+            <div>
+                <p>Would you rather...</p>
+                <form onSubmit={(e) => onSubmit(e)}>
+                    <label for="optionOne">This:</label>
+                    <input type="text" id="one" name="optionOne"></input>
+                    <label for="optionTwo">Or That:</label>
+                    <input type="text" id="two" name="optionTwo"></input>
+                    <button type="submit">Ask away</button>
+                </form>
+            </div>
+        )
+    }
+    else {
+        alert('Please login first')
+        return (<LoginForm></LoginForm>)
+    }
 }
 
 function mapStateToProps({ authedUser }) {

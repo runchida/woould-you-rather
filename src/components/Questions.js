@@ -15,18 +15,6 @@ const Questions = (props) => {
 
     );
 }
-function categorizeQuestions(questions, user) {
-    let unansweredQ = []
-    let answeredQ = []
-    questions.map((question) => {
-        if (user.answers.hasOwnProperty(question[0])) {
-            answeredQ.push({ ...question[1] })
-        } else {
-            unansweredQ.push({ ...question[1], answer: user.answers[question[0]] })
-        }
-    })
-    return [answeredQ, unansweredQ]
-}
 
 function mapStateToProps({ authedUser }, { questions, status }) {
 

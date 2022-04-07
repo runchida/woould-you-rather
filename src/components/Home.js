@@ -1,24 +1,29 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Questions from './Questions';
+import LoginForm from './LoginForm';
 
-class Home extends Component {
-    state = { showUnanswered: true }
+const Home = (props) => {
+    const [showUnanswered, setShow] = useState(true)
 
-    render() {
+    if (props.authedUser) {
         return (
             <div>
-                <p>{`Hello, ${this.props.authedUser.name}`}</p>
+                <p>{`Hello, ${props.authedUser.name}`}</p>
                 <div className="questionTypeSelect">
-                    <button onClick={() => this.setState({showUnanswered: true})}>Unanswered</button>
-                    <button onClick={() => this.setState({showUnanswered: false})}>Answered</button>
+                    <button onClick={() => setShow(true)}>Unanswered</button>
+                    <button onClick={() => setShow(false)}>Answered</button>
                 </div>
-                {this.state.showUnanswered ?
-                    <Questions status='Unanswered' questions={this.props.unansweredQ}></Questions> :
-                    <Questions status='Answered' questions={this.props.answeredQ}></Questions>
+                {showUnanswered ?
+                    <Questions status='Unanswered' questions={props.unansweredQ}></Questions> :
+                    <Questions status='Answered' questions={props.answeredQ}></Questions>
                 }
             </div>
         );
+    }
+    else {
+        alert('Please login first')
+        return (<LoginForm></LoginForm>)
     }
 }
 
@@ -43,15 +48,17 @@ function sortRecentQFirst(questions) {
 }
 
 function mapStateToProps({ authedUser, questions }) {
-    console.log(authedUser)
-    const sortedQuestions = sortRecentQFirst(questions)
-    let answeredQ, unansweredQ
-    console.log(authedUser)
-    if (authedUser) {
-        [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
+    if (Object.entries(authedUser).length !== 0) {
+        console.log(authedUser)
+        const sortedQuestions = sortRecentQFirst(questions)
+        let answeredQ, unansweredQ
+        console.log(authedUser)
+        if (authedUser) {
+            [answeredQ, unansweredQ] = categorizeQuestions(sortedQuestions, authedUser)
+        }
+        return { authedUser, answeredQ, unansweredQ }
     }
-
-    return { authedUser, answeredQ, unansweredQ }
+    else return authedUser
 }
 
 export default connect(mapStateToProps)(Home);
